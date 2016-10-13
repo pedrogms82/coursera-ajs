@@ -4,14 +4,16 @@
 
 angular.module('myApp', [])
 
-.controller('LunchCheckController', function ($scope) {
+.controller('LunchCheckController', LunchCheckController);
+
+LunchCheckController.$inject = ['$scope'];
+
+function LunchCheckController($scope) {
 
 // Start  style default
 
 $scope.menu = "";
-$scope.estilo = {
-    "color":"#000"
-  }
+
 
 //function to check items on menu
 
@@ -67,6 +69,6 @@ function calculaNumItems(cadena) {
 }
 
 
-});
+}
 
 })();
