@@ -28,11 +28,7 @@ $scope.menuCheck = function (){
 //If menu is empty return red style and enter data
 
     $scope.resultado = "Please enter data first";
-    $scope.estilo = {
-        "color": "red",
-        "border" :"1px solid",
-        "border-color" : "red"
-      };
+    $scope.estilo = "red";
 
   }
   else {
@@ -41,12 +37,7 @@ $scope.menuCheck = function (){
 
     var numItems = calculaNumItems (menu);
     $scope.resultado = numItems;
-    $scope.estilo = {
-        "color":"green",
-        "border" :"1px solid",
-        "border-color" : "green"
-
-      };
+    $scope.estilo = "green";
   }
 }
 
