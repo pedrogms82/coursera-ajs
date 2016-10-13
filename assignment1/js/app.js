@@ -4,7 +4,7 @@
 
 angular.module('myApp', [])
 
-.controller('LunchCheckController', LunchCheckController);
+.controller('LunchCheckController',  LunchCheckController);
 
 LunchCheckController.$inject = ['$scope'];
 
