@@ -10,19 +10,19 @@
       .message { font-size: 1.3em; font-weight: bold; }
     </style>
   </head>
-<body ng-app="a1">
-   <div class="container" ng-controller="a1Controller">
+<body ng-app="myApp">
+   <div class="container" ng-controller="LunchCheckController">
      <h1>Lunch Checker</h1>
 
          <div class="form-group">
-             <input ng-model="lunch-menu" type="text"
+             <input ng-model="menu" type="text"
              placeholder="list comma separated dishes you usually have for lunch"
              class="form-control">
          </div>
          <div class="form-group">
-             <button ng-click="checkMenu()" class="btn btn-default">Check If Too Much</button>
+             <button ng-click="menuCheck();"  class="btn btn-default">Check If Too Much</button>
          </div>
-         <div class="form-group message">
+         <div class="form-group message" ng-style="estilo">
            {{ resultado }}
          </div>
    </div>

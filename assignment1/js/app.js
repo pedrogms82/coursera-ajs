@@ -1,15 +1,80 @@
+
 (function () {
 'use strict';
 
-angular.module('a1', [])
+angular.module('myApp', [])
 
-.controller('a1Controller', function ($scope) {
+.controller('LunchCheckController', function ($scope) {
 
-  //$scope.lunch-menu="";
+// Start  style default
 
-  //$scope.checkMenu = 0; // boton para comprobar items de menu
+$scope.menu = "";
+$scope.estilo = {
+    "color":"#000"
+  }
 
-  var resultado = "OK"; // devoler bien o demasiado
+//function to check items on menu
+
+$scope.menuCheck = function (){
+
+// Clean blank spaces in string
+
+  var menu = $scope.menu.replace(/ /g,"");
+//  console.log("Menu " +menu);
+
+
+  if (menu === "") {
+
+//If menu is empty return red style and enter data
+
+    $scope.resultado = "Please enter data first";
+    $scope.estilo = {
+        "color": "red",
+        "border" :"1px solid",
+        "border-color" : "red"
+      };
+
+  }
+  else {
+
+//else return green style and function to count items
+
+    var numItems = calculaNumItems (menu);
+    $scope.resultado = numItems;
+    $scope.estilo = {
+        "color":"green",
+        "border" :"1px solid",
+        "border-color" : "green"
+
+      };
+  }
+}
+
+function calculaNumItems(cadena) {
+
+// split string for create array
+
+   var items = cadena.split(',');
+   //console.log(items);
+
+//if array is empty delete item
+
+   for (var i=0; i<items.length;i++){
+      if (items[i] == "") {
+        items.splice(i,1);
+        i--;
+      }
+
+   }
+   //console.log(items);
+
+//count total of items and return enjoy or too much
+
+   if (items.length < 4 ) return "Enjoy!" // + items.length  +", " + cadena
+   else return "Too much!" // + items.length+ ", " + items
+
+}
+
 
 });
 
