@@ -30,7 +30,7 @@ $scope.menuCheck = function (){
 //If menu is empty return red style and enter data
 
     $scope.resultado = "Please enter data first";
-    $scope.estilo = "red";
+    $scope.estilo = "-red";
 
   }
   else {
@@ -39,7 +39,7 @@ $scope.menuCheck = function (){
 
     var numItems = calculaNumItems (menu);
     $scope.resultado = numItems;
-    $scope.estilo = "green";
+    $scope.estilo = "-green";
   }
 }
 

@@ -16,7 +16,7 @@
      <h1>Lunch Checker</h1>
 
          <div class="form-group">
-             <input ng-model="menu" type="text" class="form-control input-{{estilo}}"
+             <input ng-model="menu" type="text" class="form-control input{{estilo}}"
              placeholder="list comma separated dishes you usually have for lunch"
              class="form-control"> Empty entires will not be counted.
          </div>
@@ -24,7 +24,7 @@
              <button ng-click="menuCheck();"  class="btn btn-default">Check If Too Much</button>
          </div>
          <div class="form-group message">
-           <span class="message-{{estilo}}">{{ resultado }}</span>
+           <span class="message{{estilo}}">{{ resultado }}</span>
          </div>
    </div>
 
