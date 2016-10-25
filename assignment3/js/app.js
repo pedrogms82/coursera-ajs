@@ -13,8 +13,67 @@ function NarrowItDownController (MenuSearchService){
 //  vm.searchTerm = "beef";
 
   vm.found  =  function (){
-  var items = MenuSearchService.getMatchedMenuItems(vm.searchTerm);
-  console.log(items.Encontrados);
+
+  var promise = MenuSearchService.getMatchedMenuItems(vm.searchTerm);
+
+   promise.then(
+    function success(result){
+
+          // process result and only keep items that match
+          var foundItems = [];
+          var menu = result.data;
+         //console.log("menu" , menu);
+
+          //procesar array de resultado si contiene searchTerm
+          for (var i = 0; i < menu.menu_items.length; i++) {
+            var description = menu.menu_items[i].description;
+          //  console.log(description + " : " + menu.menu_items.length )
+           console.log(vm.searchTerm);
+
+            if (description.toLowerCase().indexOf(vm.searchTerm) !== -1) {
+            foundItems.push(menu.menu_items[i]);
+          //  console.log(description + " : " + menu.menu_items[i] )
+            }
+          }
+          console.log("Encontrados" , foundItems);
+
+          // return processed items
+          vm.items = foundItems;
+          console.log(vm.items);
+    },
+    function error(){
+      console.log("peta");
+    });
+/*
+  items.then(function success(result){
+
+          // process result and only keep items that match
+          var foundItems = [];
+          var menu = result.data;
+         //console.log("menu" , menu);
+
+          //procesar array de resultado si contiene searchTerm
+          for (var i = 0; i < menu.menu_items.length; i++) {
+            var description = menu.menu_items[i].description;
+          //  console.log(description + " : " + menu.menu_items.length )
+           //console.log(vm.searchTerm);
+
+            if (description.toLowerCase().indexOf(vm.searchTerm) !== -1) {
+            foundItems.push(menu.menu_items[i]);
+          //  console.log(description + " : " + menu.menu_items[i] )
+            }
+          }
+          console.log("Encontrados" , foundItems);
+
+          // return processed items
+          return foundItems;
+    },
+    function error(){
+      console.log("peta");
+    });*/
+  //  console.log(vm.found);
+
+
   }
 // El valor devuelto por la funcion del servicio, deberia ser un array de objetos
   // console.log("found " , vm.found);
@@ -36,35 +95,14 @@ function MenuSearchService ($http){
 
   vm.getMatchedMenuItems = function (searchTerm){
   //  console.log("busco por ", searchTerm);
-  vm.searchTerm = searchTerm;
+//  vm.searchTerm = searchTerm;
 
-    return $http({
+     return $http({
             method: "GET",
             url: ("https://davids-restaurant.herokuapp.com/menu_items.json")
-    }).then(function (result) {
-    // process result and only keep items that match
-    var foundItems = [];
-    var menu = result.data;
-   //console.log("menu" , menu);
+    });
+  }
 
-    //procesar array de resultado si contiene searchTerm
-    for (var i = 0; i < menu.menu_items.length; i++) {
-      var description = menu.menu_items[i].description;
-    //  console.log(description + " : " + menu.menu_items.length )
-     console.log(vm.searchTerm);
-
-      if (description.toLowerCase().indexOf(vm.searchTerm) !== -1) {
-      foundItems.push(menu.menu_items[i]);
-    //  console.log(description + " : " + menu.menu_items[i] )
-      }
-    }
-    console.log("Encontrados" , foundItems);
-
-    // return processed items
-    return foundItems;
-});
-
-}
 }
 
 function FoundItems (){
