@@ -30,12 +30,17 @@ function NarrowItDownController (MenuSearchService){
           // return processed items
           vm.found = foundInMenu;
           console.log(vm.found);
+
+          var foundItem = foundInMenu;
+          return foundItem;
     },
       function error(){
         console.log("peta");
     });
   }
-
+  console.log("vm.found", vm.found);
+this.found = vm.found;this.foundItem = vm.found;
+console.log("controller this ", this);
 }
 
 
@@ -54,15 +59,16 @@ function MenuSearchService ($http){
 function FoundItems (){
 
   var ddo = {
-      templateUrl: 'views/FoundItems.html' ,
+      templateUrl: 'views/foundItems.html' ,
       scope : {
         onRemove: '&',
-        foundItems: '<'
+        items: '<'
       },
       controller: NarrowItDownController,
       controllerAs: 'menuCtrl',
       bindToController: true
   };
+  console.log("Ddo ",ddo);
   return ddo;
 
 }

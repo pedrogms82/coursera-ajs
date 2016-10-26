@@ -1,8 +1,20 @@
-<div class="loader">
+<div class="menu col-lg-12">
   <ol>
-    <li ng-repeat="item in menuCtrl.found"> -->
-      {{ item.name }} <br> {{ item.description }}
-       <!-- <button ng-click="menuCtrl.onRemove({index: $index});">Remove Item</button> -->
-    </li>
+    <div class="col-lg-12" ng-repeat="item in menuCtrl.items">
+      <ul>
+      <div class="borde">
+        <div class="col-lg-10">
+          <b>{{ item.name }}</b>
+        </div>
+        <div class="col-lg-2">
+          <button ng-click="menuCtrl.onRemove({index: $index});" class="botonRemove">Remove Item</button>
+        </div>
+        <div class="col-lg-12">
+          {{ item.description }}
+        </div>
+      </ul>
+    </div>
+    </div>
   </ol>
+<div class="error"></div>
 </div>
