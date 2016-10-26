@@ -43,8 +43,8 @@ body {
   height: 3em;
 }
 .menu{
-  margin-top: 10px;
   line-height: 1.5;
+  padding-top: 10px;
 }
 .botonRemove {
     line-height: 1;
@@ -60,12 +60,32 @@ background-color: #f2cc80;//e7a61a;
 .itemName{
   color: #337ab7;
 }
-.form-group-right {
-    padding-right: 15px;
-    float: right;
+found-items{
+    padding-top: 20px;
+    display: inherit;
+}
+@media only screen and (max-width: 780px){
+  .menu{
+    padding-top: 45px;
+  }
+}
+@media only screen and (max-width: 545px){
+  found-items{
+      padding-top: 40px;
+      display: inherit;
+  }
+  .menu{
+    padding-top: 60px;
+  }
 
 }
+.form-group-right {
+    display: inherit;
+    padding-right: 15px;
+    float: right;
+}
 .form-group {
+    display: inherit;
     margin-left: 60px;
     display:inline-grid;
 }
