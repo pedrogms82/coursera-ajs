@@ -1,13 +1,25 @@
 h1 {
   margin-bottom: 30px;
+  text-align: center;
 }
 input[type="text"] {
   width: 200px;
   float: left;
 }
+body {
+  background-color: beige;
+}
 .narrow-button {
   float: left;
   margin-left: 10px;
+}
+.error {
+   font-size: 25px;
+   color:red;
+}
+.ok {
+   font-size: 18px;
+   color:#286090;
 }
 .loader {
   display: none;

@@ -10,6 +10,7 @@ NarrowItDownController.$inject = ['MenuSearchService'];
 function NarrowItDownController (MenuSearchService){
 
   var vm = this;
+  vm.found = [];
   vm.foundTotal = 0;
 
   vm.removeItem = function (index){
@@ -18,15 +19,25 @@ function NarrowItDownController (MenuSearchService){
   } // end removeItem
 
   vm.narrowMenu  =  function (){
-    var promise = MenuSearchService.getMatchedMenuItems(vm.searchTerm);
-    promise.then(
+
+    if (vm.searchTerm === "") {
+        vm.errorShow = 1;
+        vm.found.length = 0;
+        vm.foundTotal = 0;
+        return;
+      }
+    else {
+      var promise = MenuSearchService.getMatchedMenuItems(vm.searchTerm);
+      promise.then(
       function success(result){
         vm.found = result;
         vm.foundTotal = result.length;
+        (vm.foundTotal === 0) ? vm.errorShow = 1 : vm.errorShow = 0;
       },
       function error(){
         console.log("Error in 2º promise");
       });
+    }
   } // end narrowMenu
 }//End NarrowItDownController
 
@@ -43,12 +54,16 @@ function MenuSearchService ($http){
       function success(result){
           // process result and only keep items that match
           var foundInMenu = [];
+          foundInMenu.length = 0;
           var menu = result.data;
 
           for (var i = 0; i < menu.menu_items.length; i++) {
               var description = menu.menu_items[i].description.toLowerCase();
                 if (description.indexOf(vm.searchTerm) !== -1) {
                   foundInMenu.push(menu.menu_items[i]);
+                }
+                else {
+
                 }
           }
           // return processed items
@@ -66,7 +81,8 @@ function FoundItems (){
       templateUrl: 'views/foundItems.html' ,
       scope : {
         onRemove: '&',
-        items: '<'
+        items: '<',
+        error: '<'
       },
       controller: NarrowItDownController,
       controllerAs: 'menuCtrl',
