@@ -11,11 +11,32 @@ function NarrowItDownController (MenuSearchService){
 
   var vm = this;
 
+  vm.removeItem = function (index){
+    vm.found.splice(index,1);
+  } // end removeItem
+
   vm.narrowMenu  =  function (){
-
     var promise = MenuSearchService.getMatchedMenuItems(vm.searchTerm);
-
     promise.then(
+      function success(result){
+        vm.found = result;
+      },
+      function error(){
+        console.log("Error in 2º promise");
+      });
+  } // end narrowMenu
+}//End NarrowItDownController
+
+MenuSearchService.$inject = ['$http'];
+function MenuSearchService ($http){
+
+  var vm = this;
+  vm.getMatchedMenuItems = function (searchTerm){
+     vm.searchTerm = searchTerm;
+     return $http({
+            method: "GET",
+            url: ("https://davids-restaurant.herokuapp.com/menu_items.json")
+    }).then(
       function success(result){
           // process result and only keep items that match
           var foundInMenu = [];
@@ -23,38 +44,18 @@ function NarrowItDownController (MenuSearchService){
 
           for (var i = 0; i < menu.menu_items.length; i++) {
               var description = menu.menu_items[i].description;
-              if (description.toLowerCase().indexOf(vm.searchTerm) !== -1) {
-              foundInMenu.push(menu.menu_items[i]);
-              }
+                if (description.toLowerCase().indexOf(vm.searchTerm) !== -1) {
+                  foundInMenu.push(menu.menu_items[i]);
+                }
           }
           // return processed items
-          vm.found = foundInMenu;
-          console.log(vm.found);
-
-          var foundItem = foundInMenu;
-          return foundItem;
+          return foundInMenu;
     },
       function error(){
-        console.log("peta");
+        console.log("Error in 1º promise");
     });
   }
-  console.log("vm.found", vm.found);
-this.found = vm.found;this.foundItem = vm.found;
-console.log("controller this ", this);
-}
-
-
-function MenuSearchService ($http){
-
-  var vm = this;
-  vm.getMatchedMenuItems = function (searchTerm){
-     return $http({
-            method: "GET",
-            url: ("https://davids-restaurant.herokuapp.com/menu_items.json")
-    });
-  }
-
-}
+}// End MenuSearchService
 
 function FoundItems (){
 
@@ -68,9 +69,9 @@ function FoundItems (){
       controllerAs: 'menuCtrl',
       bindToController: true
   };
-  console.log("Ddo ",ddo);
+  
   return ddo;
 
-}
+}// End FoundItems
 
 })();

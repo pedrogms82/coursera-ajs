@@ -37,12 +37,16 @@ input[type="text"] {
 .botonRemove {
     line-height: 1;
 }
-.borde {
+.item {
+  margin: 5px 5px 5px 5px;
 border-radius: 10px 10px 10px 10px;
 -moz-border-radius: 10px 10px 10px 10px;
 -webkit-border-radius: 10px 10px 10px 10px;
 border: 0px solid #000000;
-background-color: #e7a61a;
+background-color: #f2cc80;//e7a61a;
+}
+.itemName{
+  color: #337ab7;
 }
 @-webkit-keyframes load8 {
   0% {
