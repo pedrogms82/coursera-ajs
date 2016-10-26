@@ -69,7 +69,7 @@ function FoundItems (){
       controllerAs: 'menuCtrl',
       bindToController: true
   };
-  
+
   return ddo;
 
 }// End FoundItems
