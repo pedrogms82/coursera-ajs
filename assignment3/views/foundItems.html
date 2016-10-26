@@ -1,17 +1,22 @@
 <div class="menu col-lg-12 col-md-12 col-sm-12">
   <ol>
-    <div class="col-lg-12 col-md-12 col-sm-12 item" ng-repeat="item in menuCtrl.items">
+    <div class="col-lg-12 col-md-12 col-sm-12 item">
       <ul>
-      <div class="">
-        <div class="col-lg-9 itemName  col-md-12  col-sm-12">
-          <b> {{$index +1}}: {{ item.name }}</b>
-        </div>
-        <div class="col-lg-3  col-md-12  col-sm-12">
-          <button ng-click="menuCtrl.onRemove({index: $index});" class="botonRemove">Don't want this one!</button>
-        </div>
-        <div class="col-lg-12  col-md-12  col-sm-12">
-          {{ item.description }}
-        </div>
+      <div class=" ">
+        <table class="table">
+            <tr>
+              <td><b>Name</b></td>
+              <td><b>Shortname</b></td>
+              <td><b>Description</b></td>
+              <td><b>Remove</b></td>
+            </tr>
+            <tr ng-repeat="item in menuCtrl.items">
+              <td>{{$index +1}}: {{item.name}}</td>
+              <td>{{item.short_name}}</td>
+              <td>{{item.description}}</td>
+              <td><button ng-click="menuCtrl.onRemove({index: $index});" class="botonRemove">Don't want this one!</button></td>
+            </tr>
+        </table>
       </ul>
     </div>
     </div>
