@@ -48,6 +48,15 @@ background-color: #f2cc80;//e7a61a;
 .itemName{
   color: #337ab7;
 }
+.form-group-right {
+    padding-right: 15px;
+    float: right;
+
+}
+.form-group {
+    margin-left: 60px;
+    display:inline-grid;
+}
 @-webkit-keyframes load8 {
   0% {
     -webkit-transform: rotate(0deg);

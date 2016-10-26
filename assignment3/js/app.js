@@ -10,9 +10,11 @@ NarrowItDownController.$inject = ['MenuSearchService'];
 function NarrowItDownController (MenuSearchService){
 
   var vm = this;
+  vm.foundTotal = 0;
 
   vm.removeItem = function (index){
     vm.found.splice(index,1);
+    vm.foundTotal --;
   } // end removeItem
 
   vm.narrowMenu  =  function (){
@@ -20,6 +22,7 @@ function NarrowItDownController (MenuSearchService){
     promise.then(
       function success(result){
         vm.found = result;
+        vm.foundTotal = result.length;
       },
       function error(){
         console.log("Error in 2º promise");
@@ -43,8 +46,8 @@ function MenuSearchService ($http){
           var menu = result.data;
 
           for (var i = 0; i < menu.menu_items.length; i++) {
-              var description = menu.menu_items[i].description;
-                if (description.toLowerCase().indexOf(vm.searchTerm) !== -1) {
+              var description = menu.menu_items[i].description.toLowerCase();
+                if (description.indexOf(vm.searchTerm) !== -1) {
                   foundInMenu.push(menu.menu_items[i]);
                 }
           }
