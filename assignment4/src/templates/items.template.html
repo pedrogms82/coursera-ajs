@@ -1,0 +1,16 @@
+<ol class="breadcrumb">
+  <li ui-sref="home"><a>Home</a></li>
+  <li ui-sref="categories"><a>Categories</a></li>
+  <li ui-sref-active="active" ui-sref="items">Items</li>
+</ol>
+<div>
+    <p>
+    Items List
+   </p>
+
+   <ul>
+     <li ng-repeat="item in itemsCtrl.items">
+           <h4>{{item.name}}</h4> - {{item.description}}
+     </li>
+  </ul>
+</div>
